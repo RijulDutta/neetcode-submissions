@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<string>ans;
+    unordered_map<char, string>mp;
+    vector<string> letterCombinations(string digits) {
+        if(digits.size() == 0) return ans;
+        mp['2'] = "abc";
+        mp['3'] = "def";
+        mp['4'] = "ghi";
+        mp['5'] = "jkl";
+        mp['6'] = "mno";
+        mp['7'] = "pqrs";
+        mp['8'] = "tuv";
+        mp['9'] = "wxyz";
+
+        string inter;
+        helper(digits, inter, 0);
+        return ans;
+    }
+
+    void helper(string& digits, string& inter, int idx){
+        if(idx == digits.size()){
+            ans.push_back(inter);
+            return;
+        }
+
+        for(char c: mp[digits[idx]]){
+            inter.push_back(c);
+            helper(digits, inter, idx+1);
+            inter.pop_back();
+        }
+    }
+};
